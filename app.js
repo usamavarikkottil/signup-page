@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const https = require("https");
+require("dotenv").config();
 
 
 const app = express();
@@ -17,8 +18,11 @@ app.post("/" , function (req , res) {
     const fullName = req.body.fullname;
     const email = req.body.email;
     
-    const authUser = "usamavarikkottil:02625ab4e228113599b066744cd399d9-us10";
-    const url = "https://us10.api.mailchimp.com/3.0/lists/cd8fa1c17a";
+
+    
+    const authUser = process.env.MAILCHIMP_AUTH_USER;
+    const url = process.env.MAILCHIMP_URL;
+
     const options = {
         method: "POST",
         auth: authUser,
@@ -75,9 +79,7 @@ app.post("/failure", function(req , res){
 
 
 
-app.listen(process.env.PORT || 1337 , function ( ) {
-    console.log("The server is listening on port 1337...");
+app.listen(process.env.PORT || 1338 , function ( ) {
+    console.log("The server is listening on port 1338...");
 });
 
-//api key mailchimp : 02625ab4e228113599b066744cd399d9-us10
-//list id : cd8fa1c17a
