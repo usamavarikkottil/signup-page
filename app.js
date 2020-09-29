@@ -45,9 +45,9 @@ app.post("/" , function (req , res) {
 
     const request = https.request(url , options , function (response) {
 
-        // console.log(response);
+        
         response.on("data" , function (data) {
-            console.log(JSON.parse(data));
+            
             if (response.statusCode == 200)
             {
                 res.sendFile(__dirname + "/success.html");
@@ -63,7 +63,6 @@ app.post("/" , function (req , res) {
     request.write(jsonData);
     request.end();
 
-// res.send("Thanks for signing up...");
 
 
 });
